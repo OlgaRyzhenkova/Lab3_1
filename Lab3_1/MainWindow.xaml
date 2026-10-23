@@ -1,0 +1,55 @@
+﻿<Window x:Class="MulticastDelegate.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Лабораторна робота 3 - Делегований метод і потоки"
+        Height="480" Width="680" MinHeight="380" MinWidth="560"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Введення числа -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8">
+            <TextBlock Text="Число:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+            <TextBox x:Name="NumberTextBox" Width="160" Text="12345,6789"
+                     VerticalContentAlignment="Center" Padding="4"/>
+        </StackPanel>
+
+        <!-- Режим виконання -->
+        <GroupBox Grid.Row="1" Header="Режим виконання" Margin="0,0,0,8" Padding="6">
+            <StackPanel Orientation="Horizontal">
+                <RadioButton x:Name="SequentialRadio" IsChecked="True" Margin="0,0,20,0"
+                             Content="Послідовно (один потік викликає весь делегат)"/>
+                <RadioButton x:Name="ParallelRadio"
+                             Content="Паралельно (кожен метод у своєму потоці)"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Кнопки -->
+        <WrapPanel Grid.Row="2" Margin="0,0,0,8">
+            <Button x:Name="RunButton" Content="Запустити" Width="110" Padding="6,4"
+                    Margin="0,0,8,0" Click="RunButton_Click"/>
+            <Button x:Name="MethodGroupButton" Content="Групове перетворення" Padding="6,4"
+                    Margin="0,0,8,0" Click="MethodGroupButton_Click"/>
+            <Button x:Name="CoContraButton" Content="Ко-/контраваріантність" Padding="6,4"
+                    Margin="0,0,8,0" Click="CoContraButton_Click"/>
+            <Button x:Name="ClearButton" Content="Очистити" Width="90" Padding="6,4"
+                    Click="ClearButton_Click"/>
+        </WrapPanel>
+
+        <!-- Журнал -->
+        <ListBox x:Name="LogListBox" Grid.Row="3" FontFamily="Consolas" FontSize="13"/>
+
+        <!-- Статус -->
+        <StatusBar Grid.Row="4" Margin="0,8,0,0">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusText" Text="Готово"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
